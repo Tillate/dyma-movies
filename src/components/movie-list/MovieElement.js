@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 
-class MovieElement extends Component {
+export default class MovieElement extends Component {
     render() {
         return (
-            <div className='w-25 border p-4'>
-                <div className="card">
-                    <img src="https://www.gstatic.com/tv/thumb/v22vodart/24674/p24674_v_v8_ag.jpg" className="card-img-top" alt='Affiche du film gladiator'/>
-                    <div className="card-body">
-                        <h5 className="card-title">Gladiator</h5>
-                        <p className="card-text">Le général romain Maximus est le plus fidèle soutien de l'empereur Marc Aurèle, qu'il a conduit de victoire en victoire avec une bravoure et un dévouement exemplaires.</p>
+            <div className='w-50 border p-2'>
+                <div className="border d-flex">
+                    <img width="150" height="200" src="https://www.gstatic.com/tv/thumb/v22vodart/24674/p24674_v_v8_ag.jpg" alt='Affiche du film gladiator'/>
+                    <div className="flex-fill d-flex flex-column p-3">
+                        <h5>Titre</h5>
+                        <hr className="w-100" />
+                        <p>Le général romain Maximus est le plus fidèle soutien de l'empereur Marc Aurèle, qu'il a conduit de victoire en victoire avec une bravoure et un dévouement exemplaires.</p>
                     </div>
                 </div>
             </div>
         );
     }
 }
-
-export default MovieElement;

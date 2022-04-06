@@ -6,6 +6,11 @@ class MovieList extends Component {
         return (
             <div className='w-75 d-flex flex-row flex-wrap align-content-lg-start'>
                <MovieElement/>
+               <MovieElement/>
+               <MovieElement/>
+               <MovieElement/>
+               <MovieElement/>
+               <MovieElement/>
              
             </div>
         );
