@@ -13,7 +13,7 @@ export default class App extends Component {
         description: "En 1945, à New York, les Corleone sont une des 5 familles de la mafia. Don Vito Corleone, `parrain' de cette famille, marie sa fille à un bookmaker."
       }, {
         title: 'Harry Potter et le prince de sang mêlé',
-        img: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.allocine.fr%2Ffilm%2Ffichefilm-116305%2Fdvd-blu-ray%2F%3Fcproduct%3D4154296&psig=AOvVaw21RzZBafIZxluwoABKUT54&ust=1649346175199000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCPjG37nj__YCFQAAAAAdAAAAABAD',
+        img: 'https://www.we-are-girlz.com/wp-content/uploads/2009/07/harry-potter-et-le-prince-de-sang-melea.jpg',
         details: 'R | 210 min | Fantastique, Drama',
         description: "Cette sixième année scolaire de Harry Potter à l'école de sorciers commence par une dispute avec son ennemi juré Draco Malfoy, en qui les forces des ténèbres placent désormais leurs espoirs.."
       }, {
@@ -31,13 +31,23 @@ export default class App extends Component {
     }
   }
 
+  //Fonction selection movie
+  updateSelectedMovie = (title) => {
+    const index = this.state.movies.findIndex((m) => {
+      return title === m.title;
+    })
+    this.setState({
+      selectedMovie: index
+    })
+  }
+
   render() {
     return (
       <div className="App d-flex flex-column">
         <Header />
         
         <div className='d-flex flex-row flex-fill pt-4 p-2'>
-          <MovieList />
+          <MovieList movies={ this.state.movies } updateSelectedMovie= { this.updateSelectedMovie }/>
           <MovieDetails movie={ this.state.movies[this.state.selectedMovie] }/>
         </div>
       </div>
