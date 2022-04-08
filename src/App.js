@@ -6,36 +6,43 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      movies: [{
-        title: 'The Godfather',
-        img: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQyO8trmFbGTJIY6MaIFqzfPB6hW8UFCAYxTqtdKWGz7EJ6Jt-d',
-        details: 'R | 175 min | Crime, Drama',
-        description: "En 1945, à New York, les Corleone sont une des 5 familles de la mafia. Don Vito Corleone, `parrain' de cette famille, marie sa fille à un bookmaker."
-      }, {
-        title: 'Harry Potter et le prince de sang mêlé',
-        img: 'https://www.we-are-girlz.com/wp-content/uploads/2009/07/harry-potter-et-le-prince-de-sang-melea.jpg',
-        details: 'R | 210 min | Fantastique, Drama',
-        description: "Cette sixième année scolaire de Harry Potter à l'école de sorciers commence par une dispute avec son ennemi juré Draco Malfoy, en qui les forces des ténèbres placent désormais leurs espoirs.."
-      }, {
-        title: 'Le Seigneur des anneaux',
-        img: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.cinoche.com%2Ffilms%2Fle-seigneur-des-anneaux-la-communaute-de-l-anneau&psig=AOvVaw3X5Fcq7lJfvigsw2ro8BLC&ust=1649346337910000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCNjWj4bk__YCFQAAAAAdAAAAABAP',
-        details: 'R | 190 min | Aventure, Fantastique',
-        description: "Un jeune et timide `Hobbit', Frodon Sacquet, hérite d'un anneau magique. Bien loin d'être une simple babiole, il s'agit d'un instrument de pouvoir absolu qui permettrait à Sauron."
-      }, {
-        title: 'Sherlock Holmes',
-        img: 'https://www.google.com/url?sa=i&url=http%3A%2F%2Fwww.filmaffinity.com%2Fus%2Fmovieimage.php%3FimageId%3D791510663&psig=AOvVaw2v8UZbBBqGauNV-MoFJWje&ust=1649346429709000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCNDW-7Hk__YCFQAAAAAdAAAAABAI',
-        details: 'R | 220 min | Crime, Policier',
-        description: "Quand le prince autrichien est retrouvé mort, on pense à un suicide. Or le détective Sherlock Holmes pense qu'il a été assassiné et que le crime est une des pièces du puzzle conçu par le professeur Moriarty."
-      }],
+      movies: null,
       selectedMovie: 0,
+      loaded: false
     }
-  }
+
+    setTimeout( () => {
+      this.setState({
+      movies: [
+        {
+          title: 'The Godfather',
+          img: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQyO8trmFbGTJIY6MaIFqzfPB6hW8UFCAYxTqtdKWGz7EJ6Jt-d',
+          details: 'R | 175 min | Crime, Drama',
+          description: "En 1945, à New York, les Corleone sont une des 5 familles de la mafia. Don Vito Corleone, `parrain' de cette famille, marie sa fille à un bookmaker."
+        }, {
+          title: 'Harry Potter et le prince de sang mêlé',
+          img: 'https://static.posters.cz/image/750webp/104623.webp',
+          details: 'R | 210 min | Fantastique, Drama',
+          description: "Cette sixième année scolaire de Harry Potter à l'école de sorciers commence par une dispute avec son ennemi juré Draco Malfoy, en qui les forces des ténèbres placent désormais leurs espoirs.."
+        }, {
+          title: 'Le Seigneur des anneaux',
+          img: 'https://antreducinema.fr/wp-content/uploads/2021/04/communaute.jpg',
+          details: 'R | 190 min | Aventure, Fantastique',
+          description: "Un jeune et timide `Hobbit', Frodon Sacquet, hérite d'un anneau magique. Bien loin d'être une simple babiole, il s'agit d'un instrument de pouvoir absolu qui permettrait à Sauron."
+        }, {
+          title: 'Sherlock Holmes',
+          img: 'https://www.cinema-florival.com/i/films/797g.jpg',
+          details: 'R | 220 min | Crime, Policier',
+          description: "Quand le prince autrichien est retrouvé mort, on pense à un suicide. Or le détective Sherlock Holmes pense qu'il a été assassiné et que le crime est une des pièces du puzzle conçu par le professeur Moriarty."
+        }
+      ],
+      loaded: true
+    })
+  }, 2000);
+}
 
   //Fonction selection movie
-  updateSelectedMovie = (title) => {
-    const index = this.state.movies.findIndex((m) => {
-      return title === m.title;
-    })
+  updateSelectedMovie = (index) => {
     this.setState({
       selectedMovie: index
     })
@@ -45,11 +52,15 @@ export default class App extends Component {
     return (
       <div className="App d-flex flex-column">
         <Header />
-        
-        <div className='d-flex flex-row flex-fill pt-4 p-2'>
+        { this.state.loaded ? (
+          <div className='d-flex flex-row flex-fill pt-4 p-2'>
           <MovieList movies={ this.state.movies } updateSelectedMovie= { this.updateSelectedMovie }/>
           <MovieDetails movie={ this.state.movies[this.state.selectedMovie] }/>
         </div>
+        ) : (
+          <h1>Loading...</h1>
+        )}
+        
       </div>
     )
   }
