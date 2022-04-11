@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Style from './MovieElement.module.scss';
 
 export default class MovieElement extends Component {
 
@@ -8,8 +9,7 @@ export default class MovieElement extends Component {
 
     render() {
         return (
-            <div onMouseEnter={ this.mouseEnter } className='w-50 border p-2'>
-                <div className="border d-flex">
+                <div onMouseEnter={ this.mouseEnter } className={ "d-flex flex-row bg-light " + Style.container }>
                     <img width="150" height="200" src={ this.props.movie.img } alt='Affiche du film gladiator'/>
                     <div className="flex-fill d-flex flex-column p-3">
                         <h5>{ this.props.movie.title }</h5>
@@ -17,7 +17,6 @@ export default class MovieElement extends Component {
                         <p>{ this.props.movie.details }</p>
                     </div>
                 </div>
-            </div>
         );
     }
 }
