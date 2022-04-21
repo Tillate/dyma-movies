@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+
 
 class Header extends Component {
     render() {
@@ -11,10 +13,10 @@ class Header extends Component {
                 <div className="collapse navbar-collapse justify-content-end">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item active">
-                            <a href="/" className="nav-link">Home</a>
+                            <NavLink to="/films" className="nav-link">Home</NavLink>
                         </li>
                         <li className='nav-item'>
-                            <a href="/" className="nav-link">Favoris</a>
+                            <NavLink to="/favoris" className="nav-link">Favoris</NavLink>
                         </li>
                     </ul>
                 </div>
