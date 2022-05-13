@@ -66,7 +66,7 @@ export default class App extends Component {
         <div className="App d-flex flex-column">
           <Header />
           <Routes>
-            <Route path="/films" element={ <Films /> } render={ (props) => { 
+            <Route path="/films" render={ (props) => { 
               return (
                 <Films
                   { ...props } 
@@ -81,7 +81,14 @@ export default class App extends Component {
                 />
               )
             }}/>
-            <Route path="/favoris" element={ <Favoris /> }/>
+            <Route path="/favoris" render={ (props) => { 
+              return (
+                <Favoris
+                  favoris= { this.state.favoris }
+                  removeFavoris={ this.removeFavoris}
+                />
+              )
+            }} />
           </Routes>
           
         </div>
